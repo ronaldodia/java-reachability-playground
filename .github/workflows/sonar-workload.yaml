@@ -16,10 +16,8 @@ jobs:
 
       - name: Build with maven
         run: |
-          mvn verify sonar:sonar \
-          -Dsonar.projectkey=dia_snky-vul-java-app \
-          -Dsonar.organization=dia \
-          -Dsonar.host.url=https://sonarcloud.io
+           mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
+           -Dsonar.projectKey=dia_snky-vul-java-app
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN}}
