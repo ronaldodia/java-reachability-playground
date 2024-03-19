@@ -1,0 +1,26 @@
+name: SAST with SONAR
+on: [push]
+jobs:
+  sast:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: setup maven
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+          server-id: 'github'
+          settings-path: '${{ github.workspace }}'
+          cache: maven
+
+      - name: Build with maven
+        run: |
+          mvn verify sonar:sonar \
+          -Dsonar.projectkey=dia_snky-vul-java-app \
+          -Dsonar.organization=dia \
+          -Dsonar.host.url=https://sonarcloud.io
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN}}
+
