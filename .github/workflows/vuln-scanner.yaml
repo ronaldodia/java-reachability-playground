@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #name: Example workflow using Snyk
 #on: push
 #jobs:
