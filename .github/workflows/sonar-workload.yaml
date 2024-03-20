@@ -1,5 +1,6 @@
 name: SAST with SONAR
-on: [push]
+on: #[push]
+  workflow_dispatch
 jobs:
   sast:
     runs-on: ubuntu-latest
